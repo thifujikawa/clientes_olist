@@ -329,7 +329,7 @@ pick = {    "cols_num" : num_features,
 
 historical = pd.Series(pick)
 print("Creating a Pickle File")
-historical.to_pickle(os.path.join(dir_project, 'DS/modelo_otimizado.pkl'))
+historical.to_pickle(os.path.join(dir_project, 'Modelling/modelo_otimizado.pkl'))
 
 #%%
 features_values_opt  = pipeline_Ex_tree['alg'].feature_importances_
