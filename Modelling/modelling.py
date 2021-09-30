@@ -1,6 +1,5 @@
 #%%
 #Importando bibliotecas
-#Loading the Libraries
 import os 
 import sqlalchemy
 from sqlalchemy.sql.elements import Label, collate
@@ -25,21 +24,21 @@ from sklearn.metrics import roc_curve , classification_report, roc_auc_score
 pd.set_option('display.max_columns',100)
 
 #%%
-# Loading the SQL path and query
+# Carregando os paths do banco de dados
 dir_local = os.path.dirname(os.path.abspath('__file__'))
 dir_project = os.path.dirname(dir_local)
 dir_db = os.path.join(dir_project,'Data/olist.db')
 # %%
 # Efetuando a conexão com o SQLAlchemy e carregando o Dataset
-# Loading the dataframe from the tb_abt_churn
+
 con = sqlalchemy.create_engine('sqlite:///'+ dir_db)
 
 load_abt_churn = "SELECT * from tb_abt_churn"
 
 dataset = pd.read_sql(load_abt_churn , con)
 #%%
-"""Separando a base para OOT(Out of Time) para isto sera colocado a ultima safra em OOT e será trabalhado com os dados restantes para Treino e Teste
-The last harvest will be separate for OOT database, the rest of database will be used for train and test"""
+# Separando a base para OOT(Out of Time) para isto sera colocado a ultima safra em OOT e será trabalhado com os dados restantes para Treino e Teste
+
 safras = dataset['data_lim_safra'].unique()
 safras_oot = safras[-2:]
 
@@ -49,7 +48,6 @@ df = dataset[ dataset['data_lim_safra'] < safras_oot[0]].copy()
 
 #%%
 # Separando as colunas de features e target e separando os dados entre treino e teste
-# Sorting the columns betwen features and target then spliting the data in train and test
 
 target = 'flag_compra'
 df_columns = df.columns.to_list()
@@ -65,14 +63,14 @@ X_train, X_test, y_train, y_test = train_test_split(df[features], df[target],
 
 
 # %%
-# loading a report to analyze the dataset
-# Founded some null values that will be replace for median values
+# Carregando o relatório através do SweetViz
+# Alguns valores nulos foram encontrados e que serão substituidos pela mediana
 #report = sv.analyze(df)
 #report.show_html()
 
 #%%
 # Separando as colunas entre categoricas e numericas
-# Spliting the columns into categorical and numerical features
+
 cat_features = df[features].dtypes[df[features].dtypes == 'object'].index.tolist()
 num_features = df[features].dtypes[df[features].dtypes !='object'].index.tolist()
 
@@ -88,8 +86,9 @@ preparation = ColumnTransformer( transformers= [
     ('numeric', num_enc, num_features),
     ('categorical' , OneHotEncoder(handle_unknown = 'ignore'), cat_features)])
 #%%
-# Cross Validacao com alguns Algoritmos a serem usados nas Pipelines
-# Cross Validation with several algorithms, using the Pipelines
+# Validação Cruzada com alguns Algoritmos a serem usados nas Pipelines
+
+
 algoritmos = [ 
                 # Tree
                 tree.DecisionTreeClassifier(),
@@ -113,14 +112,14 @@ algoritmos = [
                 ensemble.ExtraTreesClassifier(),
                 ensemble.RandomForestClassifier()]
 
-#Criando um Dataframe para comparar os resultados
-#Create Dataframe to compare the results
+#Criando um Dataframe com os resultados assim pode-se comparar os resultados
+
 MLA_cols = ["MLA Name", "MLA Parameters", "MLA Train ROC_AUC Mean", "MLA Test ROC_AUC Mean", "MLA Test ROC_AUC DV Pad", "MLA Time"]
 MLA_Compare = pd.DataFrame(columns=MLA_cols)
 row_index = 0 # set index
 
 # A métrica utilizada para escolha do melhor algoritmo será a ROC AUC
-# The metric used for this cross validation process will be ROC AUC
+
 cv_split = ShuffleSplit(random_state=123)
 for algoritmo in algoritmos:
     pipe_loop = Pipeline([  ('prep' , preparation),
@@ -130,7 +129,7 @@ for algoritmo in algoritmos:
     MLA_Compare.loc[row_index,"MLA Name"]  = MLA_name
     MLA_Compare.loc[row_index, "MLA Parameters"] = str(pipe_loop['alg'].get_params())
     cv_results = cross_validate(pipe_loop, X= X_train, y= y_train, cv= cv_split, return_train_score=True, n_jobs=-1 , scoring='roc_auc')
-    #Results of the cross validation
+    #Resultados da validação cruzada
     MLA_Compare.loc[row_index, "MLA Time"] = cv_results['fit_time'].mean()
     MLA_Compare.loc[row_index, "MLA Train ROC_AUC Mean"] = cv_results['train_score'].mean()
     MLA_Compare.loc[row_index, "MLA Test ROC_AUC Mean"] = cv_results['test_score'].mean()
@@ -151,7 +150,7 @@ facilitando a proxima etapa de otimização de Hyperparametros
 
 Sera aplicado uma "poda" nos hyperparametros para tornar o algoritmo mais generalista, evitando assim um overfit nesta etapa.
 
-#Ploting the results
+Plotando os resultados
 """
 
 
@@ -173,10 +172,9 @@ plt.show()
 
 #%%
 """
-Parametros que serão imputados no algoritmo para verificar a performace do algoritmo
-a uma 'poda' na árvore de decisão
-Reducing the model complexity, the model overfitted.
-2 % on min_samples leaf and split limiting depth for 25
+Serão aplicados alguns parametros para realizar uma poda na arvore de decisão aparentemente o algoritmo esta sofrendo de overfit
+2 % on min_samples leaf and split 
+25 de max depth
 """
 
 reduce_overfit_params = {  "min_samples_split" : 0.02, 
@@ -218,7 +216,7 @@ def plot_roc_curve(fpr, tpr, titulo = None):
 
 # %%
 """
-Plotting the Features Importances graphics
+Plotando as variaveis de importancia
 Algumas coisas são bem interessantes, as 3 primeiras colunas tem uma forte de relação
 a constancia entre os pedidos e atividade do vendedor
 Variaveis que tambem foram importantes foram a avaliação do vendendor na safra e qual a
@@ -231,7 +229,7 @@ col_names = num_features + cat_col_names
 features_importances = pd.Series(index= col_names, data = features_values)
 features_importances.sort_values(ascending=False, inplace=True)
 
-#Plotting the TOP10 Features Importances
+#Plotando o TOP10 das Features Importances
 ticks_font = {'fontname':'Arial', 'size':'12'}
 axis_font = {'fontname':'Arial', 'size':'14'}
 fig, ax = plt.subplots(figsize = (18, 10))
@@ -242,8 +240,8 @@ plt.xticks(rotation=45, **ticks_font)
 plt.show()
 
 #%%
-# Results of the Pipeline fitted with test database and Out Of Time(OOT) database
-# Test Dataset
+# Resultados com o Dataset de Testes e OOT
+# Dataset de Teste
 df_test_pred = pipeline_Ex_tree.predict(X_test)
 df_test_pred_proba = pipeline_Ex_tree.predict_proba(X_test)[:,1]
 fpr_test, tpr_test, _ = roc_curve(y_test, df_test_pred_proba, pos_label=1)
@@ -259,7 +257,7 @@ print("ROC AUC SCORE:")
 print(f'AUC SCORE Test Dataset: {roc_auc_score(y_test,df_test_pred_proba )}')
 print(f'AUC SCORE OOT Dataset: {roc_auc_score(df_oot[target],pred_oot_proba )}')
 
-# ROC CURVE with test and OOT Dataset
+# Curva ROC com o Dataset de Teste e OOT
 roc_test_df = plt.plot(fpr_test, tpr_test, label = "Test Dataset")
 roc_oot_df = plt.plot(fpr_oot, tpr_oot, label = "OOT Dataset")
 plt.title(label="ROC Curve Baseline")
@@ -268,8 +266,7 @@ plt.ylim(0,1)
 plt.legend(title = "Legenda")
 
 # %%
-# Optimizing the parameters
-# Using Randomized Search in order to improve the results
+# Otimizando os parametros do algoritmo com Randomized Search
 
 min_samples = np.linspace(start=0.02, stop=0.05 )
 
@@ -290,7 +287,8 @@ otimizacao.fit(X_train[features], y_train)
 resultados = pd.DataFrame(otimizacao.cv_results_)
 resultados.sort_values(by='rank_test_score', ascending= True, inplace=True)
 # %%
-pipeline_Ex_tree.set_params(**otimizacao.best_params_).fit(X_train[features], y_train)
+pipeline_Ex_tree.set_params(**otimizacao.best_params_).fit(X_train[features], y_train) # aplicando o melhores parametros do Randomized Search
+
 opt_df_test_pred = pipeline_Ex_tree.predict(X_test)
 opt_df_test_pred_proba = pipeline_Ex_tree.predict_proba(X_test)[:,1]
 fpr_opt_test, tpr_opt_test, _ = roc_curve(y_test, opt_df_test_pred_proba, pos_label=1)
@@ -309,15 +307,15 @@ roc_auc_score_oot = roc_auc_score(df_oot[target],opt_df_test_oot_proba ).round(4
 print(f'Optimized AUC SCORE Test Dataset: {roc_auc_score_test}')
 print(f'Optimized AUC SCORE OOT Dataset: {roc_auc_score_oot}')
 
-# ROC CURVE with test and OOT Dataset
+# Curva ROC com o Dataset de Teste e OOT
 plt.title(label="Curva ROC Optimized")
 plt.xlim(0,1)
 plt.ylim(0,1)
 plt.legend(title = "Legenda")
 
 # %%
-# Preparando para o Deploy
-# Preparing for Deploy
+# Preparando para o arquivo Pickle
+
 pick = {    "cols_num" : num_features,
             "cat_features" : cat_features,
             "features" : features,
