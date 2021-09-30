@@ -1,12 +1,12 @@
 SELECT 
-    -- Data related with age of the seller on the Database
+
+    -- Dados relacionados a ao seller
     '{safra}' as data_lim_safra,
     t2.seller_id,
     t7.seller_state as estado,
     CAST(t3.idade_base AS INTEGER) as idade_dias,
 
     -- Vendas e qualidade dos anuncios
-    -- Sales and quality of the ad
     COUNT(DISTINCT t1.order_id) as qtde_vendas,
     COUNT(DISTINCT t2.product_id) as variedade_prod,
     COUNT(t2.product_id) as qtde_prod_vendidos,
@@ -15,20 +15,17 @@ SELECT
     AVG(t6.product_description_lenght) as media_letras_desc,
 
     --Relativo a avaliação do vendendor
-    -- Related with the seller score rate 
     AVG(t5.review_score) as avaliacao_safra,
     AVG(t3.avaliacao_acumulada) as avaliacao_acumulada,
     ROUND(AVG(t3.avaliacao_acumulada) - AVG(t5.review_score),2) as delta_avaliacao_idade_base, 
 
     --Relativo a datas
-    -- Related with sales dates
     CAST(julianday('{safra}') - julianday(max(t1.order_approved_at)) as INTEGER) as ultima_venda,
     COUNT( DISTINCT strftime("%m", t1.order_approved_at) ) as qtde_mes_ativos,
     SUM(CASE WHEN julianday(t1.order_delivered_customer_date) > julianday(t1.order_estimated_delivery_date) THEN 1 ELSE 0 END) / CAST(COUNT(t1.order_id) AS FLOAT) as prop_atrasos,
     CAST(AVG(julianday(t1.order_estimated_delivery_date) - julianday(t1.order_approved_at)) as INTEGER) as media_prazo_entrega,
 
     -- Referente a receita
-    -- Related with the reciept
     sum(t2.price) as receita_total,
     sum(t2.price) / COUNT(DISTINCT( t2.order_id)) as ticket_medio,
     sum(t2.price) / COUNT(t2.product_id) as valor_medio_prod,
@@ -45,7 +42,6 @@ LEFT JOIN tb_order_items as t2
 ON t1.order_id = t2.order_id
 
     --Acrescentando Idade da pessoa na base de dados
-    --Adding the age of the seller on the database
 LEFT JOIN(
     SELECT 
         t2.seller_id,
