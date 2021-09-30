@@ -1,7 +1,7 @@
 
 #%%
 # Carregando as bibliotecas
-# Loading Libraries
+
 import os 
 import argparse
 import sqlalchemy
@@ -10,7 +10,6 @@ from sqlalchemy.engine import base
 
 # %%
 # Realizando a chamada do argparse para carregar as datas desejadas
-# Loading the argparse to load de dates
 
 parser = argparse.ArgumentParser(description= "Input das safras e intervalo")
 
@@ -23,14 +22,12 @@ safra = args.safra
 qtde_safra = args.int
 # %%
 # Carregando o path do banco de dados
-# Loading the database Path
 folder_file = os.path.dirname(os.path.abspath('__file__'))  #Folder file path
 folder_project = os.path.dirname(folder_file) # Project path
 db_address = os.path.join(folder_project,'Data/olist.db') #db_address
 db_sql = os.path.join(folder_project,'Query') #folder_sql
 #%%
 # Conexão com o banco de dados
-# Connection with the Database
 con = sqlalchemy.create_engine('sqlite:///'+ db_address)
 #%%
 def import_file(path, *kwargs):
@@ -75,6 +72,4 @@ for data in safras_geradas:
     con.execute(base_query.format(query=query_formatada))
 
 
-# %%
 
-# %%
