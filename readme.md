@@ -22,6 +22,26 @@ Utilizando Data Science e o Banco de dados da Olist, elaborei um projeto onde po
     🚧 Em construção... 🚧
 
 ### Features
-- [X] Envio do Projeto para o Github
+- [x] Envio do Projeto para o Github
 - [ ] Passar o modelling para notebook
 - [ ] Terminar o texto para o Github Pages
+- [ ] Alterar a Tabela  tb_abt_sellers, tb_churn_score para tb_sell_score
+
+(#como_usar)
+
+* Realizar o Download do repositório e do banco de dados conforme as instruções abaixo:
+    1. git clone https://github.com/thifujikawa/clientes_olist.git
+    2. Efetuar o Download do Banco de dados da Olist O banco de dados deve estar salvo no diretório Data
+
+* Instalar as bibliotecas:
+    1. No Repositório o arquivo requirements.txt possui todas as bibliotecas necessárias para o projeto.
+
+* Utilização dos programas:
+    * Programa gerador de scores da base ativa:
+        1. Executar o arquivo get_the_last_model.py, Este programa irá gerar as safras e em seguida coleta do arquivo Pickle toda a Pipeline gerar um score dos usuários. Estes Scores serão salvos no banco de dados com o nome de tb_sell_score
+
+
+## 🛠 Tecnologias
+
+- [Python](https://www.python.org)
+- [SQL]()
