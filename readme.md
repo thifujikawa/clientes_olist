@@ -27,8 +27,16 @@ Utilizando Data Science e o Banco de dados da Olist, elaborei um projeto onde po
 - [ ] Terminar o texto para o Github Pages
 - [ ] Alterar a Tabela  tb_abt_sellers, tb_churn_score para tb_sell_score
 
-(#como_usar)
 
+## Como Usar <a name="como_usar"></a>
+
+### Pré Requisitos <a name="pre-requisitos"></a>
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+- [Git]
+- [Python]
+- [SQL]
+
+### Local Files <a name="local-files"></a>
 * Realizar o Download do repositório e do banco de dados conforme as instruções abaixo:
     1. git clone https://github.com/thifujikawa/clientes_olist.git
     2. Efetuar o Download do Banco de dados da Olist O banco de dados deve estar salvo no diretório Data
