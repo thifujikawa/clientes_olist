@@ -6,18 +6,18 @@ Utilizando Data Science e o Banco de dados da Olist, elaborei um projeto onde po
 
 Tabela de conteúdos
 =============
-<!--ts-->
-    * [Sobre](#sobre)
-    * [Tabela de Conteúdo](#tabela_de_conteudo)
-    * [Instalação](#instalacao)
-    * [Como Usar](#como_usar)
-        * [Pre Requisitos](#pre-requisitos)
-        * [Local Files](#local-files)
-        * [Remote Files](#remote-files)
-    * [Tests](#testes)
-    * [Tecnologias](#tecnologias)
 
-<!--te-->
+* [Sobre](#sobre)
+* [Tabela de Conteúdo](#tabela_de_conteudo)
+* [Instalação](#instalacao)
+* [Como Usar](#como_usar)
+    * [Pre Requisitos](#pre-requisitos)
+    * [Local Files](#local-files)
+    * [Remote Files](#remote-files)
+* [Tests](#testes)
+* [Tecnologias](#tecnologias)
+
+
 
 <h4 align="center">
     🚧 Em construção... 🚧
