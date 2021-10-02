@@ -66,10 +66,12 @@ con.execute(creation_table.format(chamada_query=query_formatada))
 for data in safras_geradas:
     query_formatada = query.format(safra=data)
     # Caso a safra ja estiver sido criada 
-    print(f'Verifying if the date {data} already exists in the Database')
+    print(f'Processando a data de {data} na tabela tb_abt_churn')
     con.execute("DELETE FROM tb_abt_churn WHERE data_lim_safra = '{safra}'".format(safra=data))
     base_query = "INSERT INTO tb_abt_churn\n {query}"
     con.execute(base_query.format(query=query_formatada))
 
 
 
+
+# %%

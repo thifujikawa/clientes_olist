@@ -49,7 +49,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
         1. Executar o arquivo get_the_last_model.py, Este programa irá gerar as safras e em seguida coleta do arquivo Pickle toda a Pipeline gerar um score dos usuários. Estes Scores serão salvos no banco de dados com o nome de tb_sell_score
 
 
-## 🛠 Tecnologias
+## 🛠 Tecnologias <a name="tecnologias"></a>
 
 - [Python](https://www.python.org)
 - [SQL]()

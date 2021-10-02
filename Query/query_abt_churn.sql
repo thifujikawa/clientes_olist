@@ -1,7 +1,7 @@
 SELECT 
     -- Relativo a dados do cliente
     
-    COALESCE(t8.venda,0) as flag_compra,  -- Variavel resposta
+    COALESCE(t8.venda,0) as flag_venda,  -- Variavel resposta
     '{safra}' as data_lim_safra,
     t2.seller_id,
     t7.seller_state as estado,  

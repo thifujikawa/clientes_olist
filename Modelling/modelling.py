@@ -42,16 +42,16 @@ dataset = pd.read_sql(load_abt_churn , con)
 safras = dataset['data_lim_safra'].unique()
 safras_oot = safras[-2:]
 
-dataset['flag_compra'] = dataset['flag_compra'].astype(int)
+dataset['flag_venda'] = dataset['flag_venda'].astype(int)
 df_oot = dataset[ dataset['data_lim_safra'] >= safras_oot[0]].copy()
 df = dataset[ dataset['data_lim_safra'] < safras_oot[0]].copy()
 
 #%%
 # Separando as colunas de features e target e separando os dados entre treino e teste
 
-target = 'flag_compra'
+target = 'flag_venda'
 df_columns = df.columns.to_list()
-to_remove = ['flag_compra', 'data_lim_safra', 'seller_id']
+to_remove = ['flag_venda', 'data_lim_safra', 'seller_id']
 features = []
 for x in df_columns:
     if x not in to_remove:
