@@ -35,7 +35,7 @@ def import_file(path, *kwargs):
         result = file_open.read()
         return result
 
-
+# Retorna uma lista com datas incrementando um mes por vez.
 def gera_safras(data, qtde):
     mes = int(data[5:7])
     ano = int(data[0:4])
@@ -54,21 +54,21 @@ def gera_safras(data, qtde):
 safra = '2017-04-01' # Erase later
 qtde_safra = 14 # Erase later
 
-query = import_file(os.path.join(db_sql,"query_abt_churn.sql"))
-safras_geradas = gera_safras(safra,qtde_safra)
+query = import_file(os.path.join(db_sql,"query_abt.sql")) # Transforma a query em string
+safras_geradas = gera_safras(safra,qtde_safra) #Gera as safras
 
 
-creation_table = "CREATE TABLE IF NOT EXISTS tb_abt_churn as \n{chamada_query}"
+creation_table = "CREATE TABLE IF NOT EXISTS tb_abt_no_sells as \n{chamada_query}"
 query_formatada = query.format(safra=safras_geradas[0])
 con.execute(creation_table.format(chamada_query=query_formatada))
 
 
 for data in safras_geradas:
     query_formatada = query.format(safra=data)
-    # Caso a safra ja estiver sido criada 
-    print(f'Processando a data de {data} na tabela tb_abt_churn')
-    con.execute("DELETE FROM tb_abt_churn WHERE data_lim_safra = '{safra}'".format(safra=data))
-    base_query = "INSERT INTO tb_abt_churn\n {query}"
+    # Caso a safra já estiver sido criada 
+    print(f'Processando a data de {data} na tabela tb_abt_no_sells')
+    con.execute("DELETE FROM tb_abt_no_sells WHERE data_lim_safra = '{safra}'".format(safra=data))
+    base_query = "INSERT INTO tb_abt_no_sells\n {query}"
     con.execute(base_query.format(query=query_formatada))
 
 

@@ -33,7 +33,7 @@ dir_db = os.path.join(dir_project,'Data/olist.db')
 
 con = sqlalchemy.create_engine('sqlite:///'+ dir_db)
 
-load_abt_churn = "SELECT * from tb_abt_churn"
+load_abt_churn = "SELECT * from tb_abt_no_sells"
 
 dataset = pd.read_sql(load_abt_churn , con)
 #%%

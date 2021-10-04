@@ -15,14 +15,17 @@ Utilizando Data Science e o Banco de dados da Olist, elaborei um projeto onde po
     * [Remote Files](#remote-files)
 * [Tests](#testes)
 * [Tecnologias](#tecnologias)
+* [Autor](#autor)
 
 
 ## Status do Projeto
 <h4 align="center">
+
     🚧 Em construção... 🚧
 
 ### Features
 - [x] Envio do Projeto para o Github
+- [x] Alterado o nome da Flag
 - [ ] Passar o modelling para notebook
 - [ ] Terminar o texto para o Github Pages
 - [ ] Alterar a Tabela  tb_abt_sellers, tb_churn_score para tb_sell_score
@@ -53,3 +56,34 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 
 - [Python](https://www.python.org)
 - [SQL]()
+
+## 🙍 Autor <a name="autor"></a>
+Feito por Thiago Ide.
+
+[![Linkedin Badge](https://img.shields.io/badge/-Thiago-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/thide)](https://www.linkedin.com/in/thide/)
+[![Gmail Badge](https://img.shields.io/badge/-thiago.ide@icloud.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:thiago.ide@icloud.com)](mailto:thiago.ide@icloud.com)
+
+
+## 📚 Licença
+
+MIT License
+
+Copyright (c) <2020> <Seu Nome>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

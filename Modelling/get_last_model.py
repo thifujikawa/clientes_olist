@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 dir_folder = os.path.dirname(os.path.abspath(__file__))
 dir_project = os.path.dirname(dir_folder)
 db_file = os.path.join(dir_project, 'Data/olist.db')
-pickle_file = os.path.join(dir_project, 'DS/modelo_otimizado.pkl')
+pickle_file = os.path.join(dir_project, 'Modelling/modelo_otimizado.pkl')
 
 
 #%%
@@ -67,8 +67,8 @@ X = dataset[model["features"]]
 dataset["predict"] = pipe.predict_proba(X)[:,1]
 # %%
 output_dataset = dataset[['seller_id','predict']]
-output_dataset.to_sql('tb_churn_score', con,  index=False, if_exists='replace')
-print(f"Criado a tabela tb_churn_score na db {db_file} ")
+output_dataset.to_sql('tb_no_sells_score', con,  index=False, if_exists='replace')
+print(f"Criado a tabela tb_no_sells_score na db {db_file} ")
 
 
 # %%
