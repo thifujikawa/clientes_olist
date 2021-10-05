@@ -23,12 +23,12 @@ Utilizando Data Science e o Banco de dados da Olist, elaborei um projeto onde po
 
     🚧 Em construção... 🚧
 
-### Features
+## Features
 - [x] Envio do Projeto para o Github
 - [x] Alterado o nome da Flag
+- [x] Alterar a Tabela  tb_abt_sellers, tb_churn_score para tb_sell_score
 - [ ] Passar o modelling para notebook
 - [ ] Terminar o texto para o Github Pages
-- [ ] Alterar a Tabela  tb_abt_sellers, tb_churn_score para tb_sell_score
 
 
 ## Como Usar <a name="como_usar"></a>
@@ -49,7 +49,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 
 * Utilização dos programas:
     * Programa gerador de scores da base ativa:
-        1. Executar o arquivo get_the_last_model.py, Este programa irá gerar as safras e em seguida coleta do arquivo Pickle toda a Pipeline gerar um score dos usuários. Estes Scores serão salvos no banco de dados com o nome de tb_sell_score
+        1. Executar o arquivo get_the_last_model.py, Este programa irá gerar as safras e em seguida coleta do arquivo Pickle toda a Pipeline gerar um score dos usuários. Estes Scores serão salvos no banco de dados com o nome de **tb_no_sells_score**
 
 
 ## 🛠 Tecnologias <a name="tecnologias"></a>

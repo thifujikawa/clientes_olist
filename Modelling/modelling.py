@@ -172,7 +172,7 @@ plt.show()
 
 #%%
 """
-Serão aplicados alguns parametros para realizar uma poda na arvore de decisão aparentemente o algoritmo esta sofrendo de overfit
+Serão aplicados alguns parametros para realizar uma poda na árvore de decisão aparentemente o algoritmo esta sofrendo de overfit
 2 % on min_samples leaf and split 
 25 de max depth
 """
