@@ -27,8 +27,12 @@ Utilizando Data Science e o Banco de dados da Olist, elaborei um projeto onde po
 - [x] Envio do Projeto para o Github
 - [x] Alterado o nome da Flag
 - [x] Alterar a Tabela  tb_abt_sellers, tb_churn_score para tb_sell_score
-- [ ] Passar o modelling para notebook
-- [ ] Terminar o texto para o Github Pages
+- [x] Passar o modelling para notebook
+- [ ] Explicar melhor o passo a passo nesse Github
+- [ ] Explicar melhor com Markdowns o notebook afim de gerar um storytelling mais claro
+- [ ] Verificar se retiro do notebook os algoritmos selecionados na fase inicial do estudo
+- [X] Terminar o texto para o Github Pages
+- [X] Formatar o texto para o Github Pages
 
 
 ## Como Usar <a name="como_usar"></a>
