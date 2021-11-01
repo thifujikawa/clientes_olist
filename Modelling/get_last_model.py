@@ -15,9 +15,9 @@ from sklearn.ensemble import ExtraTreesClassifier
 import matplotlib.pyplot as plt
 
 #%%
-#parser = argparse.ArgumentParser(description="Insira as safras desejadas")
-#parser.add_argument("--safra", "-s", help= 'Data desejada do banco')
-#args = parser.parse_args()
+parser = argparse.ArgumentParser(description="Insira as safras desejadas")
+parser.add_argument("--safra", "-s", help= 'Data desejada do banco')
+args = parser.parse_args()
 
 #data = args.data
 #%%
@@ -38,9 +38,9 @@ def import_file(path, *kwargs):
 con = sqlalchemy.create_engine('sqlite:///' + db_file)
 
 # Formatando  a query para gerar uma tabela no banco de dados SQL 
-data = '2018-04-01' # Apagar depois 
+#data = '2018-04-01' # Apagar depois 
 query = import_file(os.path.join(dir_project, "Query/query_book_variaveis.sql"))
-query_formatada = query.format(safra=data)
+query_formatada = query.format(safra=args['safra'])
 
 # Criando a table SQL com os dados imputados
 try:
