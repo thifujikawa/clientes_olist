@@ -67,8 +67,6 @@ nbconvert==6.1.0
 nbformat==5.1.3
 nest-asyncio==1.5.1
 networkx==2.5.1
-nltk==3.6.2
-notebook==6.4.0
 numba==0.53.1
 numexpr==2.7.3
 numpy==1.19.5
@@ -81,7 +79,6 @@ patsy==0.5.1
 pexpect @ file:///tmp/build/80754af9/pexpect_1605563209008/work
 phik==0.11.2
 pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
-Pillow==8.2.0
 plac==1.1.3
 plotly==5.0.0
 preshed==3.0.5
@@ -118,7 +115,6 @@ smart-open==5.1.0
 smmap==4.0.0
 spacy==2.3.7
 SQLAlchemy==1.4.19
-sqlparse==0.4.1
 srsly==1.0.5
 statsmodels==0.12.2
 sweetviz==2.1.2
