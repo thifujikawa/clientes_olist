@@ -30,6 +30,7 @@ Utilizando Data Science e o Banco de dados da Olist, elaborei um projeto onde po
 - [x] Envio do Projeto para o Github
 - [x] Passar o modelling para notebook
 - [X] Terminar o texto para o Github Pages
+- [ ] Passar o Banco de dados para Download
 - [ ] Melhorar a documentação no GitHub
 - [ ] Explicar melhor o notebook afim de gerar um storytelling mais claro
 - [ ] Verificar se retiro do notebook os algoritmos selecionados na fase inicial do estudo
