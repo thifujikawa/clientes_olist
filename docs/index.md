@@ -29,7 +29,7 @@ Utilizando um algoritmo podemos localizar os clientes que tendem a não realizar
 
 
 ### 2 - ETL <a name="etl"></a>
-<img src="../Data/dbmap.png" width="600" height="350">  
+<center><img src="img/dbmap.png" width="600" height="350"> </center>
 
 A base de dados fornecida pela Olist é composta de diversas tabelas com diferentes informações. Através delas foi gerado as possíveis variáveis preditoras  relevantes ao problema abordado. O Book de Variáveis contempla todos estes dados em uma única tabela.
 Explicando de maneira superficial, para que o algoritmo de Machine Learning possa interpretar e trazer predições é necessário criar uma variável resposta e a partir desta resposta o algoritmo detecta a mudança de padrões e o quão elas impactaram em sua variável resposta.
