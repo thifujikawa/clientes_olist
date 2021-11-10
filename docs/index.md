@@ -6,7 +6,7 @@ Neste projeto foi aplicado um conjunto de conceitos adquiridos em Data Science f
 Esta é uma demonstração de como o Data Science pode ser introduzido em um ambiente corporativo, neste exemplo foi abordado a redução da taxa de churn.
 
 ### O que é a Olist
-
+![olistimg](/docs/img/logo_olist.png)  
 A Olist é uma plataforma de e-commerce que utiliza sua expertise intermediando o vendedor com grandes marketplaces, de maneira que um único produto cadastrado seja distribuído para diversos marketplaces simultaneamente facilitando e aumentando as chances de vendas.
 
 ### Etapas do Projeto:
