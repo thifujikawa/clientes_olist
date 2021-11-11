@@ -1,17 +1,17 @@
 # Data Science como ferramenta para retenção de clientes da Olist
 
-### **Introdução**
+## **Introdução**
 
-Neste projeto foi aplicado um conjunto de conceitos adquiridos em Data Science focando localizar os clientes da Olist com dificuldades em realizar vendas para que estratégias de retenção possam ser aplicadas. Do banco de dados da Olist, foram extraídas as variáveis de importância (ETL) e a partir destes dados foram elaborados experimentos com diversos algoritmos de Machine Learning a fim de selecionar aquele que obteve melhor desempenho na detecção destes vendedores. 
-Esta é uma demonstração de como o Data Science pode ser introduzido em um ambiente corporativo, neste exemplo foi abordado a redução da taxa de churn.
+Neste projeto foi aplicado um conjunto de conceitos adquiridos em Data Science focando localizar os clientes da Olist com dificuldades em realizar vendas para que estratégias de retenção possam ser aplicadas. Do banco de dados da Olist, foram extraídas as variáveis de importância (ETL) e a partir destes dados foram elaborados experimentos com diversos algoritmos de Machine Learning a fim de selecionar aquele que obteve melhor desempenho na detecção destes vendedores.  
+Esta é uma demonstração de como o Data Science pode ser aplicado em um problema recorrente em empresas.  
 Neste texto estou explicando de maneira superficial o que foi realizado, os detalhes e as explicações de cada processo estão no meu repositório do [GitHub](https://github.com/thifujikawa/clientes_olist)
 
-### **O que é a Olist**
+## **O que é a Olist**
 <img src="img/logo_olist.png" width="300" height="100">
 
 A Olist é uma plataforma de e-commerce que utiliza sua expertise intermediando o vendedor com grandes marketplaces de maneira que um único produto cadastrado seja distribuído para diversos marketplaces simultaneamente facilitando e aumentando as chances de vendas.
 
-### **Etapas do Projeto:**
+## **Etapas do Projeto:**
 Para este projeto foi realizado a divisão em diversas etapas:
 
 1. [**Problema de Negócio**](#problema_negocio) Um Problema real de negócio que empresas como a Olist constamente enfretam 
@@ -72,3 +72,12 @@ Com este score podemos estudar como atuar para impulsionar as vendas utilizando 
 |**0,6 e 0,35**  | Estes vendedores ainda podem representar um potencial risco de não realizar vendas portanto campanhas de e-mails contendo as tendências de vendas atuais e outras análises podem aumentar ainda mais as chances de vendas.|
 |**0,34 e 0** | Representam clientes que potencialmente vão realizar vendas e que não serão foco para este case.|
 
+## Considerações finais
+Este projeto pode abranger desde início de um projeto da Data Science partindo de um problema de negócio, utilização do banco de dados da empresa, extração e análise dos dados, seleção e otimização do algoritmo de machine learning e por fim um programa que utiliza o algoritmo de machine learning para realizar o score dos vendedores. A partir destes scores pode-se realizar agrupamentos para campanhas distintas de retenção.
+
+
+## 🙍 Autor <a name="autor"></a>
+Feito por Thiago Ide.
+
+[![Linkedin Badge](https://img.shields.io/badge/-Thiago-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/thide)](https://www.linkedin.com/in/thide/)
+[![Gmail Badge](https://img.shields.io/badge/-thiago.fudji@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:thiago.fudji@gmail.com)](mailto:thiago.fudji@gmail.com)
