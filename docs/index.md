@@ -1,4 +1,4 @@
-# Data Science como ferramenta para Retenção de clientes da Olist
+# Data Science como ferramenta para retenção de clientes da Olist
 
 ### **Introdução**
 
