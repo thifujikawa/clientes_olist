@@ -56,7 +56,7 @@ Definidas as estratégias para lidar com este dataset foi possível verificar co
 Utilizando o algoritmo treinado na fase anterior o mesmo irá fazer uma predição das chances do vendedor realizar alguma venda nos próximos 3 meses, esta resposta pode variar entre 0 e 1. Quanto maior este score, maiores são as chances de ocorrer vendas. 
 O Id do vendedor junto ao score atribuído pelo algoritmo é enviado para uma tabela no banco de dados  
 
-<img src="img/resultados1.png" width="350" height="100">
+<img src="img/scores.png" width="350" height="100">
 
 <a name="negocio"></a>
 
