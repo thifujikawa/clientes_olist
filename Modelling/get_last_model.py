@@ -1,3 +1,18 @@
+##########################################################################################################
+################# Projeto para detecção de vendedores que podem deixar da base da Olist. #################
+###################################### Etapa 4/5 Operacionalização ######################################
+##########################################################################################################
+
+# Este script irá gerar o Book de variáveis através da query_book_variaveis.sql, de posse do book de variáveis
+# e do arquivo Pickle contendo o algoritmo otimizado na fase anterior realizará o score dos vendedores e 
+# salvará na tabela tb_no_sells_score
+
+# Pré-requisitos para execução do Script:
+# * Arquivo Pickle gerado pelo notebook da fase anterior e salvo no mesmo diretório deste arquivo
+# * Banco de dados salvo no diretório Data
+
+# Caso queira ver um overview do projeto inteiro, entrar no meu GithubPages (https://thifujikawa.github.io/clientes_olist/) lá explico melhor todas as etapas do projeto.
+
 #%%
 #Carregando as bibliotecas
 
@@ -19,7 +34,7 @@ parser = argparse.ArgumentParser(description="Insira as safras desejadas")
 parser.add_argument("--safra", "-s", help= 'Data desejada do banco')
 args = parser.parse_args()
 
-#data = args.data
+data = args.data
 #%%
 dir_folder = os.path.dirname(os.path.abspath(__file__))
 dir_project = os.path.dirname(dir_folder)
@@ -34,7 +49,7 @@ def import_file(path, *kwargs):
         return result
 
 #%%
-# Gerar as safras do book de variaveis que seriam os últimos 3 meses do banco
+# Gerar as safras do book de variáveis que seriam os últimos 3 meses do banco
 con = sqlalchemy.create_engine('sqlite:///' + db_file)
 
 # Formatando  a query para gerar uma tabela no banco de dados SQL 
@@ -54,7 +69,7 @@ con.execute(create_table)
 
 #%%
 
-# Load SQL Database and Pickle file
+# Carregando o banco de dados e o arquivo Pickle
 task = "SELECT * FROM tb_book_sellers"
 dataset = pd.read_sql(task, con)
 model  = pd.read_pickle(pickle_file)
@@ -69,6 +84,3 @@ dataset["predict"] = pipe.predict_proba(X)[:,1]
 output_dataset = dataset[['seller_id','predict']]
 output_dataset.to_sql('tb_no_sells_score', con,  index=False, if_exists='replace')
 print(f"Criado a tabela tb_no_sells_score na db {db_file} ")
-
-
-# %%

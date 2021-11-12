@@ -41,7 +41,7 @@ FROM tb_orders as t1
 LEFT JOIN tb_order_items as t2
 ON t1.order_id = t2.order_id
 
-    --Acrescentando Idade da pessoa na base de dados
+-- Acrescentando dados que não são linkados com safras avalianca acumada e idade na base
 LEFT JOIN(
     SELECT 
         t2.seller_id,
