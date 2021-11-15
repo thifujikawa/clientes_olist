@@ -1,6 +1,6 @@
 ##########################################################################################################
 ################# Projeto para detecção de vendedores que podem deixar da base da Olist. #################
-###################################### Etapa 4/5 Operacionalização ######################################
+###################################### Etapa 4/5 Operacionalização #######################################
 ##########################################################################################################
 
 # Este script irá gerar o Book de variáveis através da query_book_variaveis.sql, de posse do book de variáveis
@@ -9,7 +9,7 @@
 
 # Pré-requisitos para execução do Script:
 # * Arquivo Pickle gerado pelo notebook da fase anterior e salvo no mesmo diretório deste arquivo
-# * Banco de dados salvo no diretório Data
+# * Banco de dados salvo no diretório Data 
 
 # Caso queira ver um overview do projeto inteiro, entrar no meu GithubPages (https://thifujikawa.github.io/clientes_olist/) lá explico melhor todas as etapas do projeto.
 
