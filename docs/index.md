@@ -2,16 +2,15 @@
 
 ## **Introdução**
 
-Neste projeto foi aplicado um conjunto de conceitos adquiridos em Data Science focando localizar os clientes da Olist com dificuldades em realizar vendas para que estratégias de retenção possam ser aplicadas. Do banco de dados da Olist, foram extraídas as variáveis de importância (ETL) e a partir destes dados foram elaborados experimentos com diversos algoritmos de Machine Learning a fim de selecionar aquele que obteve melhor desempenho na detecção destes vendedores.  
-Esta é uma demonstração de como o Data Science pode ser aplicado em um problema recorrente em empresas.  
-Neste texto estou explicando de maneira superficial o que foi realizado, os detalhes e as explicações de cada processo estão no meu repositório do [GitHub](https://github.com/thifujikawa/clientes_olist)
+O objetivo deste projeto é analisar um extrato da base de dados da Olist para identificar os clientes deste serviço que estejam apresentando dificuldades em realizar vendas e propor estratégias de retenção, a serem aplicadas de acordo com o perfil de cada cliente. A partir de variáveis de importância extraídas do banco de dados da Olist, foram elaborados experimentos com diversos algoritmos de machine learning a fim de selecionar o modelo com melhor desempenho na detecção destes vendedores.  
+Neste relatório, apresento uma visão geral da metodologia empregada e dos resultados obtidos, a fim de demonstrar como conhecimentos de Data Science podem ser aplicado em um problema recorrente em empresas. Os detalhes técnicos e explicações minuciosas de cada processo encontram-se no meu repositório do [GitHub](https://github.com/thifujikawa/clientes_olist)
 
 ## **O que é a Olist**
 <img src="img/logo_olist.png" width="300" height="100">
 
 A Olist é uma plataforma de e-commerce que utiliza sua expertise intermediando o vendedor com grandes marketplaces de maneira que um único produto cadastrado seja distribuído para diversos marketplaces simultaneamente facilitando e aumentando as chances de vendas.
 
-## **Etapas do Projeto:**
+## **Metodologia:**
 Para este projeto foi realizado a divisão em diversas etapas:
 
 1. [**Problema de Negócio**](#problema_negocio) Um Problema real de negócio que empresas como a Olist constamente enfretam 
