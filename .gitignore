@@ -1,5 +1,4 @@
 *.db
-Query/consulta.sql
 Query/query.sql
 Query/var_resposta.sql
 Modelling/teste.py
