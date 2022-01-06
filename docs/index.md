@@ -2,23 +2,25 @@
 
 ## **Introdução**
 
-O objetivo deste projeto é analisar um extrato da base de dados da Olist para identificar os clientes deste serviço que estejam apresentando dificuldades em realizar vendas e propor estratégias de retenção, a serem aplicadas de acordo com o perfil de cada cliente. A partir de variáveis de importância extraídas do banco de dados da Olist, foram elaborados experimentos com diversos algoritmos de machine learning a fim de selecionar o modelo com melhor desempenho na detecção destes vendedores.  
-Neste relatório, apresento uma visão geral da metodologia empregada e dos resultados obtidos, a fim de demonstrar como conhecimentos de Data Science podem ser aplicado em um problema recorrente em empresas. Os detalhes técnicos e explicações minuciosas de cada processo encontram-se no meu repositório do [GitHub](https://github.com/thifujikawa/clientes_olist)
+Este projeto tem como objetivo selecionar entre todos os clientes que utilizam o serviço da Olist, identificar aqueles que apresentam dificuldades na realização de suas vendas e propor estratégias específicas de acordo com o perfil de cliente afim de evitar a saída futura dos clientes da Olist.
+Para alcançar esse objetivo, foram selecionados variáveis de importância extraídas do banco de dados da Olist e utilizados em diversos algoritmos de machine learning resultando no modelo com o melhor desempenho para a identificação destes clientes.
 
-## **O que é a Olist**
+Neste relatório, apresento uma visão geral da metodologia empregada e dos resultados obtidos, a fim de demonstrar como conhecimentos de Data Science podem ser aplicados em um problema de negócio. Os detalhes técnicos e explicações minuciosas de cada processo encontram-se no meu repositório do [GitHub](https://github.com/thifujikawa/clientes_olist)
+
+## **O que é a Olist** 
 <img src="img/logo_olist.png" width="300" height="100">
 
-A Olist é uma plataforma de e-commerce que utiliza sua expertise intermediando o vendedor com grandes marketplaces de maneira que um único produto cadastrado seja distribuído para diversos marketplaces simultaneamente facilitando e aumentando as chances de vendas.
+A Olist é uma plataforma de e-commerce que utiliza sua expertise intermediando o vendedor com grandes sites de comércio eletrônico, de maneira que um único produto cadastrado seja distribuído para os principais sites simultaneamente facilitando o vendedor e aumentando as chances de vendas.
 
 <a name="voltar"></a>
 
 ## **Metodologia:**
 Para este projeto foi realizado a divisão em diversas etapas:
 
-1. [**Problema de Negócio**](#problema_negocio) Um Problema real de negócio que empresas como a Olist constamente enfretam 
-2. [**Entendimento dos dados**](#data_understanding)
+1. [**Problema de Negócio**](#problema_negocio) Um Problema real de negócio que empresas como a Olist constamente enfrentam.
+2. [**Entendimento dos dados**](#data_understanding) Compreender como o banco de dados esta estruturado.
 3. [**Extração Transformação e Carga (ETL-*Extraction Transform Load*)**](#etl) Extração dos dados do banco, geração de variáveis para análise
-4. [**Análise Exploratória de Dados (EDA-*Exploratory Data Analysis*)  e Construção do modelo**](#preproc) Análise exploratória dos dados, Processamento dos dados e Construção do modelo de machine learning
+4. [**Análise Exploratória de Dados (EDA-*Exploratory Data Analysis*) e Construção do modelo**](#preproc) Análise exploratória dos dados, Processamento dos dados e Construção do modelo de machine learning
 5. Resultados
 6. [**Operacionalização**](#operacional) Utilização do algoritmo treinado para geração de scores dos vendedores
 7. [**Estratégia de Negócio**](#negocio) Como pode ser aplicada os resultados a fim de resolver o problema de negócio
@@ -26,49 +28,55 @@ Para este projeto foi realizado a divisão em diversas etapas:
 <a name="problema_negocio"></a>
 
 ### **1 - Problema de negócio** 
-
-A Olist oferta planos mensais para seus clientes, somado a mensalidade é cobrado um valor de comissão por produto vendido.
-Como o Custo de Aquisição do Cliente (CAC) costuma ser mais alto do que manter o cliente com estratégias de retenção, é de extrema importância para a Olist o sucesso dos seus clientes.
+A Olist é uma startup que possui seu modelo de negócio baseado em assinaturas mensais e comissão por vendas, portanto, é de extrema importância para a Olist que seus vendedores consigam concretizar vendas para permanecerem no negócio. Outro fator a ser considerado é que neste tipo de negócio, manter um assinante na plataforma com estratégias de retenção costumam ser menos custosos camparadas as campanhas de marketing para aquisição de novos clientes.
 
 #### **1.1 - Solução para o problema**
-Afim de minimizar o número de clientes que irão deixar a Olist. Será utilizado o banco de dados para criar um modelo preditivo e assim determinar quais são as chances deste cliente deixar de realizar vendas utilizando a plataforma, desta maneira pode-se realizar certas campanhas, ações ou consultorias direcionadas aos usuários com o intuito de evitar que os usuários abandonem a empresa. Infelizmente não pude usar dados de clientes que entraram e sairam da plataforma para resolver o problema pois estes dados não foram fornecidos.
+Afim de minimizar o número de clientes que irão deixar a Olist, será utilizado o banco de dados para criar um modelo preditivo e assim determinar quais serão as chances deste cliente deixar de realizar vendas utilizando a plataforma, desta maneira, pode-se realizar determinadas campanhas, ações ou consultorias direcionadas aos usuários com o intuito de evitar que os usuários abandonem a empresa.
 
 [**Voltar**](#voltar)
 
 <a name="data_understanding"></a>
 
-### **2 Data Understanding (*Entendimento dos dados*)**
+### **2 Data Understanding (*Entendimento dos dados*)**   
+
+<figure>
 <center><img src="img/dbmap.png" width="600" height="350"> </center>
-Tendo conhecimento do problema e o que se espera da resposta do algoritmo, o próximo passo é observar os dados.Esta parte é fundamental para que exista sucesso no projeto. Um bom modelo de machine learning depende de dados que serão utilizados para treinamento do algoritmo. Portanto é fundamental que a empresa possua uma boa estrutura em seu banco de dados.
+<figcaption> Figura1: Esquema do banco de dados da Olist </figcaption> 
+</figure>
 
-A base de dados da Olist foi elaborada em star scheme (Esquema Estrela), modelo amplamente adotado em data warehouses, onde no centro temos a tabela *orders_dataset* rodeadas de tabelas auxiliares, cada uma ligada através de uma coluna.  
+Com o problema identificado e o que se espera da resposta do algoritmo, o próximo passo é compreender o banco de dados. Para esta etapa, é fundamental que a empresa possua uma boa estrutura no banco de dados, pois um bom modelo de machine learning depende dos dados deste banco para o treinamento do algoritmo.
 
-A tabela *orders_dataset* possui todos os pedidos realizados durante o periodo de 15/09/2016 à 3/09/2018 totalizando 99441 registros. As tabelas auxiliares fornecem informações relacionadas as forma de pagamento, itens comprados, avaliação da compra por parte do comprador, dados dos compradores, entre outros.  
+A base de dados da Olist foi elaborada em star scheme (Esquema Estrela), modelo amplamente adotado em data warehouses.Pode-se observar na figura 1, onde no centro temos a tabela *orders_dataset* rodeadas de tabelas auxiliares. As tabelas auxiliaries contém informações relacionadas a forma de pagamento, itens comprados, avaliação da compra por parte de comprador, dados dos compradores, entre outros
 
-No início havia idealizado um problema focado nos usuários que sairam da plataforma, porém infelizmente como as tabelas se foca apenas em dados referente a ordens de compra e não aos usuários que entraram e sairam da plataforma, tive que alterar abordagem do problema, por isto e outros motivos esta etapa é uma das etapas fundamentais.
+A tabela *olist_orders_dataset* possui todos os pedidos realizados durante o periodo de 15/09/2016 à 3/09/2018 totalizando 99441 registros.
+
+No início havia idealizado uma solução do problema focado nos usuários que sairam da plataforma, porém infelizmente como as tabelas focam apenas em dados referente a ordens de compra e não aos usuários que entraram e sairam da plataforma, tive que alterar abordagem do problema, por isto e outros motivos esta etapa é uma das etapas fundamentais.
 
 [**Voltar**](#voltar)
 <a name="etl"></a>
 
-### **3 - Extração Transformação e Carga (ETL-*Extraction Transform Load*)** 
+### **3 - Extração Transformação e Carga (ETL-*Extraction Transform Load*)**  
 
-Nesta fase os dados de diferentes tabelas serão extraidos e reunidos em apenas uma tabela, a seleção,processamento destes dados que irão para esta tabela exige um conhecimento do negócio já que a criação de certos indicadores podem auxiliar o algoritmo a compreender o comportamento dos clientes que tendem a não realizar vendas.
+Nesta fase reúne-se dados de diferentes tabelas em apenas uma tabela, a seleção.
+Para selecionar quais destes dados irão para tabela é preciso um conhecimento prévio do negócio, pois é através do uso destes indicadores que o algoritmo compreenderá o comportamento dos clientes que tendem a não realizar vendas.
+Além das variáveis geradas citadas acima para que o algoritmo possa compreender as alterações é necessário que ele saiba quais clientes realizaram ou não vendas nos próximos 3 meses, isto é chamado de variável resposta, portanto, nesta tabela teremos as variaveis geradas junto a variável resposta.
+Abaixo segue algumas estratégias utilizadas para a confecção da tabela.
 
-### Geração das Safas   
-Como a base de dados possui apenas dados relacionados a vendas realizadas durante 2 anos, optei por criar partições destes dados, que nada mais são que um agrupado dos dados dos vendedores em um certo periodo, neste caso, foi considerado um periodo de 6 meses de atividade deste vendedor e nos 3 meses seguintes se o vender realizou alguma venda.   
-Exemplo:
-Os dados de vendas do usuário durante os meses de Janeiro e Junho foram coletados processados e enviados para a tabela já a variável resposta irá considerar se houve vendas nos próximos 3 meses após o mes de Julho , desta maneira o algoritmo pode avaliar dado ao comportamento do usuário no periodo observado e se houve ou não vendas.   
-Desta maneira as safras selecionadas contemplam os seguintes dados:
+### Geração das Safras   
+Como a base de dados possui apenas dados relacionados a vendas realizadas durante 2 anos, criei partições destes dados, que nada mais são que um agrupamento dos dados dos vendedores de um determinado periodo, neste caso, foi considerado um periodo de 6 meses de atividade deste vendedor e nos 3 meses seguintes se houve alguma venda.   
+Exemplo:  
+Os dados de vendas do usuário durante os meses de Janeiro e Junho foram coletados processados e enviados para a tabela.Já a variável resposta irá considerar se houve vendas nos próximos 3 meses após o mes de Julho, desta maneira o algoritmo pode avaliar de acordo comportamento do usuário no periodo observado e se houve ou não vendas.   
+As safras selecionadas contemplam os seguintes dados:
 
 |Safra       | Comportamento do usuário nos meses   | Periodo observado se houve vendas     |
 |----------- |----------------                      | ----------------                      |
 |Abr/17      | Out/16 à Abr/17                      | Mai/17 à Jul/17                       |
 |Mai/17      | Nov/16 à Mai/17                      | Jun/17 à Set/17                       |
 |Jun/17      | Dez/16 à Jun/17                      | Jul/17 à Out/17                       |
-|----        | ----                                 | ----                                  |
+| &mdash;        | &mdash;                                 | &mdash;                                  |
 |Mai/18      | Nov/17 à Mai/19                      | Jun/18 à Set/18                       |
 
-### Criação das Variáveis
+### Criação das Variáveis   
 Definida a estratégia de particionar os dados gerando safras o próximo passo é reunir todas as informações pertinentes a este problema em uma única tabela onde: Nas linhas temos dados do usuário e nas colunas informações pertinentes a este usuário. Esta e a etapa anterior de entendimento dos dados possuem grande importância para o sucesso do projeto, pois caso informações do usuário nesta tabela que não represente grande relevância para o problema podem prejudicar o treinamento do modelo. Abaixo demonstro as variáveis geradas e utilizadas neste projeto.
 
 |Variável                       |Descrição                                                              |
@@ -108,14 +116,12 @@ Criação da tabela com safras: Um aquivo utilizando linguagem Python realiza a 
 
 ### **4 – Análise Exploratória de Dados (EDA - Exploratory Data Analysis) e Construção do modelo** 
 
-### Falta falar um pouco mais da EDA
 Com a tabela gerada na fase de EDA a etapa de compreensão dos dados gerados se inicia.  Através da Análise Exploratória permitiu notar que:
 * Existiam valores ausentes na tabela que necessitou devidas estratégias de substituição
 * Ao verificar a distribuição dos dados de maneira gráfica alguns vendedores demonstraram um comportamento estranho(Vendedores com poucas vendas, Valor da venda muito alto e baixa avalição) ao investigar um pouco mais estes usuários no banco de dados pode-se notar que são possíveis fraudadores, já que estes usuários não haviam recebido seus produtos ou receberam modelo não condizentes ao anúncio. Como estes usuários não eram interessantes para este projeto estes usuários foram removidos da tabela.
-* Através da visualização de correlação entre variáveis foram excluidas 2 variáveis pois estavam altamente corelacionada as outras, desta maneira evitamos que o algoritmo de considere variáveis que estariam explicando a mesma coisa.
+* Através da visualização de correlação entre variáveis foram excluidas 2 variáveis pois estavam altamente corelacionadas as outras, desta maneira evitamos que o algoritmo de considere variáveis que estariam explicando a mesma coisa.
 
-Ao término da Análise Exploratória pode-se compreender e tratar os dados quando necessário. Tendo os dados "tratados" a etapa de modelagem do modelo se inicia
-
+Ao término da Análise Exploratória pode-se compreender e tratar os dados quando necessário. Tendo os dados "tratados" a etapa de modelagem do algoritmo se iniciou.
 
 Definidas as estratégias para lidar com este dataset foi possível verificar como alguns dos algoritmos estão performando. Com base nos resultados obtidos foram utilizadas métricas de validação e tempo de processamento para a escolha de apenas um algoritmo que posteriormente recebeu otimização que consiste em alterar parâmetros no algoritmo a fim de melhorar os resultados analisados. 
 
