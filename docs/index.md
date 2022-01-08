@@ -130,16 +130,23 @@ Ao término da Análise Exploratória pode-se compreender e tratar os dados. Ten
 
 ### Modelagem
 Para iniciar e avaliar o modelo foi retirada a última safra do *dataset*(tabela que foi processada anteriormente), esta será utilizada próximo do fim do projeto com o objetivo de avaliar como o algoritmo irá se comportar com dados novos.
-Como existem diversos algoritmos de machine learning cada um com suas qualidades e defeitos, foi selecionados alguns afim de criar modelos de previsão, através desta previsão pode-se ter um panorama de como os algoritmos erros/acertos do algoritmo:
+Para verificar se um algoritmo performa bem não se pode utilizar os dados que foram utilizados para treino. Pois são dados que já foram vistos pelo algoritmo (é como se você já tivesse visto o gabarito de um teste). Nesta etapa foi utilizada a Validação Cruzada e KFolds que separa o dataset em K partes onde 1 desta parte é selecionada para teste e as restantes para treino, tendo um modelo treinado com estas partes ele utiliza os dados de teste e baseado na resposta que o modelo previu temos um resultado, este é confrontado com o valor que já se sabe e temos a quantidade de acertos e erros. A Validação Cruzada com KFolds é um processo iterativo onde se temos 10 folds esta validação será feita 10 vezes, cada uma utilizando 1 fold diferente para teste.
+Como existem diversos algoritmos de machine learning cada um com suas qualidades e defeitos, foi selecionados alguns afim de criar modelos de previsão, através desta previsão pode-se ter um panorama de como os algoritmos errou/acertou.
 
 <figure>
-<center><img src="img/baseline.png" width="800" height="350"> </center>
+<center><img src="img/baseline.png" width="1000" height="400"> </center>
 <figcaption> Figura2: Resultados obtidos na fase de seleção do algoritmo </figcaption> 
 </figure>
 
-A métrica utilizada para avaliar e chegar nos resultado foi a F1 Score. Na Figura 2 pode-se observar que o modelo LGBMClassifier(Light Gradient Boosting Machine) forneceu os melhores resultados.
+A métrica utilizada para avaliar e chegar nos resultado foi a F1 Score. Na Figura 2 pode-se observar que o modelo LGBMClassifier(Light Gradient Boosting Machine) forneceu os melhores resultados. Baseado nestes resultados e tendo escolhido o modelo a ser utilizado se inicia a etapa de otimização do algoritmo.
+Para maximizar a quantidade de acertos o modelo possui parametros que podem ser alterados, esta etapa possui um alto custo computacional pois dado alguns parametros ele irá realizar todas as combinações possíveis, algumas estratégias foram adotadas nesta etapa afim de diminuir o número de combinações e achar um resultado mais rápido.
+No início desta etapa foi citado a respeito da ultima safra retirada do dataset, nesta etapa ela foi utilizada, desta maneira esses dados são novos para o modelo já que ele foi retirado da fase inicial do processo.
 
-Definidas as estratégias para lidar com este dataset foi possível verificar como alguns dos algoritmos estão performando. Com base nos resultados obtidos foram utilizadas métricas de validação e tempo de processamento para a escolha de apenas um algoritmo que posteriormente recebeu otimização que consiste em alterar parâmetros no algoritmo a fim de melhorar os resultados analisados. 
+<figure>
+<center><img src="img/f1score_opt.png" width="1000" height="400"> </center>
+<figcaption> Figura3: Resultados da fase de otimização </figcaption> 
+</figure>
+
 
 [**Voltar**](#voltar)
 <a name="operacional"></a>
