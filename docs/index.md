@@ -21,8 +21,8 @@ Para este projeto foi realizado a divisão em diversas etapas:
 2. [**Entendimento dos dados**](#data_understanding) Compreender como o banco de dados esta estruturado.
 3. [**Extração Transformação e Carga (ETL-*Extraction Transform Load*)**](#etl) Extração dos dados do banco, geração de variáveis para análise
 4. [**Análise Exploratória de Dados (EDA-*Exploratory Data Analysis*) e Construção do modelo**](#preproc) Análise exploratória dos dados, Processamento dos dados e Construção do modelo de machine learning
-5. Resultados
-6. [**Operacionalização**](#operacional) Utilização do algoritmo treinado para geração de scores dos vendedores
+5. [**Resultados**](#resultados)
+6. [**Implementação do modelo**](#implementação) Utilização do algoritmo treinado para geração de scores dos vendedores
 7. [**Estratégia de Negócio**](#negocio) Como pode ser aplicada os resultados a fim de resolver o problema de negócio
 
 <a name="problema_negocio"></a>
@@ -142,16 +142,25 @@ A métrica utilizada para avaliar e chegar nos resultado foi a F1 Score. Na Figu
 Para maximizar a quantidade de acertos o modelo possui parametros que podem ser alterados, esta etapa possui um alto custo computacional pois dado alguns parametros ele irá realizar todas as combinações possíveis, algumas estratégias foram adotadas nesta etapa afim de diminuir o número de combinações e achar um resultado mais rápido.
 No início desta etapa foi citado a respeito da ultima safra retirada do dataset, nesta etapa ela foi utilizada, desta maneira esses dados são novos para o modelo já que ele foi retirado da fase inicial do processo.
 
+
+[**Voltar**](#voltar)
+<a name="resultados"></a>
+
+### **5 – Resultados** 
+
+Ao Avaliar os resultados do modelo treinado e otimizado com dados novos da última safra  
+
 <figure>
 <center><img src="img/f1score_opt.png" width="1000" height="400"> </center>
 <figcaption> Figura3: Resultados da fase de otimização </figcaption> 
 </figure>
 
 
-[**Voltar**](#voltar)
-<a name="operacional"></a>
 
-### **4 – Operacionalização** 
+[**Voltar**](#voltar)
+<a name="implementação"></a>
+
+### **6 – Implementação do modelo** 
 
 Utilizando o algoritmo treinado na fase anterior o mesmo irá fazer uma predição das chances do vendedor realizar alguma venda nos próximos 3 meses, esta resposta pode variar entre 0 e 1. Quanto maior este score, maiores são as chances de ocorrer vendas. 
 O Id do vendedor junto ao score atribuído pelo algoritmo é enviado para uma tabela no banco de dados  
@@ -162,7 +171,7 @@ O Id do vendedor junto ao score atribuído pelo algoritmo é enviado para uma ta
 [**Voltar**](#voltar)
 <a name="negocio"></a>
 
-### **5 – Possíveis estratégias de negócio** 
+### **7 – Possíveis estratégias de negócio** 
 
 Com este score podemos estudar como atuar para impulsionar as vendas utilizando diferentes campanhas para os vendedores. Com estes resultados foi possível separar os vendedores em 4 grupos de acordo com o score:
 
