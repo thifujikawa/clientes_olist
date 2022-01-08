@@ -77,13 +77,15 @@ As safras selecionadas contemplam os seguintes dados:
 |Mai/18      | Nov/17 à Mai/19                      | Jun/18 à Set/18                       |
 
 ### Criação das Variáveis   
-Definida a estratégia de particionar os dados gerando safras o próximo passo é reunir todas as informações pertinentes a este problema em uma única tabela onde: Nas linhas temos dados do usuário e nas colunas informações pertinentes a este usuário. Esta e a etapa anterior de entendimento dos dados possuem grande importância para o sucesso do projeto, pois caso informações do usuário nesta tabela que não represente grande relevância para o problema podem prejudicar o treinamento do modelo. Abaixo demonstro as variáveis geradas e utilizadas neste projeto.
+Definida a estratégia de particionar os dados gerando safras o próximo passo é reunir todas as informações pertinentes a este problema em uma única tabela.
+Nesta tabela, as linhas temos dados do usuário e as colunas informações pertinentes a este usuário. Esta e a etapa anterior sobre o entendimento dos dados é de grande importância para o sucesso do projeto, pois é através do refinamento correto de dados das informações referente ao usuário que permitirão auxiliar e obter sucesso do treinamento do modelo.
+Abaixo demonstro as variáveis geradas e utilizadas neste projeto.
 
 |Variável                       |Descrição                                                              |
 |-----------                    |----------------                                                       |
 |Safra                          |Indica a Safra do dado                                                 |
 |Seller ID                      |Identificação do Usuário                                               |
-|flag venda                     |Indica se houve vendas nos 3 meses seguintes                           |
+|flag venda                     |Indica se houve vendas nos 3 meses seguintes (Variável Resposta)                       |
 |estado                         |Estado do Usuário                                                      |
 |idade_dias                     |Qtde de dias que entrou na Plataforma                                  |
 |qtde_vendas                    |Qtde de Vendas                                                         |
@@ -109,19 +111,33 @@ Definida a estratégia de particionar os dados gerando safras o próximo passo �
 ### Execução da Etapa
 A Etapa de Extração, Transformação e Carregamento dos dados (***ETL***) foi elaborada da seguinte maneira:   
 Seleção das Variáveis : Um arquivo em formato SQL, efetua a seleção e criação das variáveis acessando as diferentes tabelas e cruzando dados quando necessário.
-Criação da tabela com safras: Um aquivo utilizando linguagem Python realiza a criação da tabela e ao usuário inserir a data de início da safra e a quantidade desejada de safras, preenche a tabela utilizando o arquivo de seleção de variáveis. Deste maneira em um tabela temos as safras e todas as variáveis que foram escolhidas;
+Criação da tabela com safras: Um arquivo utilizando linguagem Python realiza a criação da tabela. Ao usuário inserir a data de início da safra e a quantidade desejada de safras, preenche a tabela utilizando o arquivo de seleção de variáveis. Deste maneira em um tabela temos as safras e todas as variáveis que foram escolhidas;
 
 [**Voltar**](#voltar)
 <a name="preproc"></a>
 
 ### **4 – Análise Exploratória de Dados (EDA - Exploratory Data Analysis) e Construção do modelo** 
 
-Com a tabela gerada na fase de EDA a etapa de compreensão dos dados gerados se inicia.  Através da Análise Exploratória permitiu notar que:
-* Existiam valores ausentes na tabela que necessitou devidas estratégias de substituição
-* Ao verificar a distribuição dos dados de maneira gráfica alguns vendedores demonstraram um comportamento estranho(Vendedores com poucas vendas, Valor da venda muito alto e baixa avalição) ao investigar um pouco mais estes usuários no banco de dados pode-se notar que são possíveis fraudadores, já que estes usuários não haviam recebido seus produtos ou receberam modelo não condizentes ao anúncio. Como estes usuários não eram interessantes para este projeto estes usuários foram removidos da tabela.
+Após a geração da tabela e o preenchimento com dados dos vendedores, chega a fase de análise dos dados, esta análise se iniciou avaliando o tamanho da tabela (Linhas X Colunas), em seguida quais tipos de variáveis a tabela possui (Nominais, Ordinais, Discretas e Continuas), nesta etapa ocorreram algumas correções já que dados numéricos haviam sido interpretados como caracteres.
+Após a correção dos dados se iniciou a Análise Exploratória dos dados é de suma importância e tem como objetivo de identificar previamente os dados discrepantes, a normalidade da distribuição de frequências e a variação dos dados. Muitas vezes os valores discrepantes demonstram problemas, erro de digitação, fraudes, diferente moeda monetária.
+Através da Análise Exploratória permitiu notar que:
+* Existiam valores ausentes na tabela e necessitou estratégias de substituição que serão realizadas na fase de modelagem para evitar viés.
+* Ao verificar a distribuição dos dados de maneira gráfica alguns vendedores demonstraram um comportamento estranho(Vendedores com poucas vendas com Valor da venda muito alto e baixa avalição) ao investigar um pouco mais estes usuários no banco de dados pode-se notar que são possíveis fraudadores, já que estes usuários não haviam recebido seus produtos ou receberam modelo não condizentes ao anúncio. Como estes usuários não são interessantes para este projeto os mesmos foram removidos da tabela.
 * Através da visualização de correlação entre variáveis foram excluidas 2 variáveis pois estavam altamente corelacionadas as outras, desta maneira evitamos que o algoritmo de considere variáveis que estariam explicando a mesma coisa.
+Após a análise exploratória, a última safra foi separada e
 
-Ao término da Análise Exploratória pode-se compreender e tratar os dados quando necessário. Tendo os dados "tratados" a etapa de modelagem do algoritmo se iniciou.
+Ao término da Análise Exploratória pode-se compreender e tratar os dados. Tendo os dados "tratados" a etapa de modelagem do algoritmo se iniciou.
+
+### Modelagem
+Para iniciar e avaliar o modelo foi retirada a última safra do *dataset*(tabela que foi processada anteriormente), esta será utilizada próximo do fim do projeto com o objetivo de avaliar como o algoritmo irá se comportar com dados novos.
+Como existem diversos algoritmos de machine learning cada um com suas qualidades e defeitos, foi selecionados alguns afim de criar modelos de previsão, através desta previsão pode-se ter um panorama de como os algoritmos erros/acertos do algoritmo:
+
+<figure>
+<center><img src="img/baseline.png" width="800" height="350"> </center>
+<figcaption> Figura2: Resultados obtidos na fase de seleção do algoritmo </figcaption> 
+</figure>
+
+A métrica utilizada para avaliar e chegar nos resultado foi a F1 Score. Na Figura 2 pode-se observar que o modelo LGBMClassifier(Light Gradient Boosting Machine) forneceu os melhores resultados.
 
 Definidas as estratégias para lidar com este dataset foi possível verificar como alguns dos algoritmos estão performando. Com base nos resultados obtidos foram utilizadas métricas de validação e tempo de processamento para a escolha de apenas um algoritmo que posteriormente recebeu otimização que consiste em alterar parâmetros no algoritmo a fim de melhorar os resultados analisados. 
 
