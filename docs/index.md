@@ -73,7 +73,7 @@ As safras selecionadas contemplam os seguintes dados:
 |Abr/17      | Out/16 à Abr/17                      | Mai/17 à Jul/17                       |
 |Mai/17      | Nov/16 à Mai/17                      | Jun/17 à Set/17                       |
 |Jun/17      | Dez/16 à Jun/17                      | Jul/17 à Out/17                       |
-| &mdash;        | &mdash;                                 | &mdash;                                  |
+| &mdash;    | &mdash;                              | &mdash;                               |
 |Mai/18      | Nov/17 à Mai/19                      | Jun/18 à Set/18                       |
 
 ### Criação das Variáveis   
@@ -85,7 +85,7 @@ Abaixo demonstro as variáveis geradas e utilizadas neste projeto.
 |-----------                    |----------------                                                       |
 |Safra                          |Indica a Safra do dado                                                 |
 |Seller ID                      |Identificação do Usuário                                               |
-|flag venda                     |Indica se houve vendas nos 3 meses seguintes (Variável Resposta)                       |
+|flag venda                     |Indica se houve vendas nos 3 meses seguintes (Variável Resposta)       |
 |estado                         |Estado do Usuário                                                      |
 |idade_dias                     |Qtde de dias que entrou na Plataforma                                  |
 |qtde_vendas                    |Qtde de Vendas                                                         |
@@ -134,11 +134,11 @@ Para verificar se um algoritmo performa bem não se pode utilizar os dados que f
 Como existem diversos algoritmos de machine learning cada um com suas qualidades e defeitos, foi selecionados alguns afim de criar modelos de previsão, através desta previsão pode-se ter um panorama de como os algoritmos errou/acertou.
 
 <figure>
-<center><img src="img/baseline.png" width="1000" height="400"> </center>
+<center><img src="img/baseline.png" width="1200" height="400"> </center>
 <figcaption> Figura2: Resultados obtidos na fase de seleção do algoritmo </figcaption> 
 </figure>
 
-A métrica utilizada para avaliar e chegar nos resultado foi a F1 Score. Na Figura 2 pode-se observar que o modelo LGBMClassifier(Light Gradient Boosting Machine) forneceu os melhores resultados. Baseado nestes resultados e tendo escolhido o modelo a ser utilizado se inicia a etapa de otimização do algoritmo.
+A métrica utilizada para avaliar e chegar nos resultado foi a F1 Score. Na Figura 2 pode-se observar que o modelo LGBMClassifier(Light Gradient Boosting Machine) forneceu os melhores resultados. Baseado nestes resultados e tendo escolhido o modelo a ser utilizado e iniciou-se a etapa de otimização do algoritmo.
 Para maximizar a quantidade de acertos o modelo possui parametros que podem ser alterados, esta etapa possui um alto custo computacional pois dado alguns parametros ele irá realizar todas as combinações possíveis, algumas estratégias foram adotadas nesta etapa afim de diminuir o número de combinações e achar um resultado mais rápido.
 No início desta etapa foi citado a respeito da ultima safra retirada do dataset, nesta etapa ela foi utilizada, desta maneira esses dados são novos para o modelo já que ele foi retirado da fase inicial do processo.
 
@@ -148,10 +148,11 @@ No início desta etapa foi citado a respeito da ultima safra retirada do dataset
 
 ### **5 – Resultados** 
 
-Ao Avaliar os resultados do modelo treinado e otimizado com dados novos da última safra  
+Ao avaliar os resultados do modelo treinado e otimizado com dados novos da última safra, temos um F1 Score do conjunto dos dados de teste e *Out of Time* com valores próximos e ao observar os dados abaixo 
+
 
 <figure>
-<center><img src="img/f1score_opt.png" width="1000" height="400"> </center>
+<center><img src="img/f1score_opt.png" width="700" height="350"> </center>
 <figcaption> Figura3: Resultados da fase de otimização </figcaption> 
 </figure>
 
