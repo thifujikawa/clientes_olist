@@ -148,11 +148,12 @@ No início desta etapa foi citado a respeito da ultima safra retirada do dataset
 
 ### **5 – Resultados** 
 
-Ao avaliar os resultados do modelo treinado e otimizado com dados novos da última safra, temos um F1 Score do conjunto dos dados de teste e *Out of Time* com valores próximos e ao observar os dados abaixo 
-
+Ao avaliar os resultados do modelo treinado e otimizado com dados novos da última safra, temos um F1 Score do conjunto dos dados de teste e *Out of Time* com valores próximos e ao observar os dados abaixo pode-se concluir que:
+Ao avaliar os resultados nos dados de validação e observando os usuários que não iriam fazer vendas pode-se concluir que:
+O Modelo teve uma precisão em identificar usuários que não irão realizar vendas em 68% dos casos e conseguiu capturar 78% dos usuários desse grupo
 
 <figure>
-<center><img src="img/f1score_opt.png" width="700" height="350"> </center>
+<center><img src="img/f1score_opt.png" width="600" height="700"> </center>
 <figcaption> Figura3: Resultados da fase de otimização </figcaption> 
 </figure>
 
@@ -163,10 +164,17 @@ Ao avaliar os resultados do modelo treinado e otimizado com dados novos da últi
 
 ### **6 – Implementação do modelo** 
 
+Com o modelo treinado salvo se inicia o processo de utilização em novos dados. Para isto foi criado um arquivo em formato pickle contendo o modelo e dados que são importantes para o modelo funcionar.
+
+A Resposta do modelo de predição pode variar de 0 a 1 sendo que quanto mais próximo do 1 maiores são as chances do usuário não realizar vendas, nos Resultados demonstrado acima o algoritmo usou o arredondamento, isto é, valores acima de 0,5 foi classficado como 1 e inferiores a 0,5 como valores 0. porém podemos usar estes valores decimais, assim, temos a probabilidade deste usuário pertencer de 0 a 1
+
+
+
 Utilizando o algoritmo treinado na fase anterior o mesmo irá fazer uma predição das chances do vendedor realizar alguma venda nos próximos 3 meses, esta resposta pode variar entre 0 e 1. Quanto maior este score, maiores são as chances de ocorrer vendas. 
 O Id do vendedor junto ao score atribuído pelo algoritmo é enviado para uma tabela no banco de dados  
 
 <img src="img/scores.png" width="350" height="100">
+
 
 
 [**Voltar**](#voltar)
