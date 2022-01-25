@@ -46,7 +46,7 @@ Afim de minimizar o número de clientes que irão deixar a Olist, será utilizad
 
 Com o problema identificado e o que se espera da resposta do algoritmo, o próximo passo é compreender o banco de dados. Para esta etapa, é fundamental que a empresa possua uma boa estrutura no banco de dados, pois um bom modelo de machine learning depende dos dados deste banco para o treinamento do algoritmo.
 
-A base de dados da Olist foi elaborada em star scheme (Esquema Estrela), modelo amplamente adotado em data warehouses.Pode-se observar na figura 1, onde no centro temos a tabela *orders_dataset* rodeadas de tabelas auxiliares. As tabelas auxiliaries contém informações relacionadas a forma de pagamento, itens comprados, avaliação da compra por parte de comprador, dados dos compradores, entre outros
+A base de dados da Olist foi elaborada em star scheme (Esquema Estrela), modelo amplamente adotado em data warehouses.Pode-se observar na figura 1, onde no centro temos a tabela *orders_dataset* rodeadas de tabelas auxiliares. As tabelas auxiliaries contém informações relacionadas a forma de pagamento, itens comprados, avaliação da compra por parte de comprador, dados dos compradores entre outros
 
 A tabela *olist_orders_dataset* possui todos os pedidos realizados durante o periodo de 15/09/2016 à 3/09/2018 totalizando 99441 registros.
 
@@ -78,7 +78,7 @@ As safras selecionadas contemplam os seguintes dados:
 
 ### Criação das Variáveis   
 Definida a estratégia de particionar os dados gerando safras o próximo passo é reunir todas as informações pertinentes a este problema em uma única tabela.
-Nesta tabela, as linhas temos dados do usuário e as colunas informações pertinentes a este usuário. Esta e a etapa anterior sobre o entendimento dos dados é de grande importância para o sucesso do projeto, pois é através do refinamento correto de dados das informações referente ao usuário que permitirão auxiliar e obter sucesso do treinamento do modelo.
+Nesta tabela, as linhas temos dados do usuário e as colunas informações pertinentes a este usuário. Esta e a etapa anterior sobre o entendimento dos dados são de grande importância para o sucesso do projeto, pois é através do refinamento correto de dados das informações referente ao usuário que permitirão auxiliar e obter sucesso do treinamento do modelo.
 Abaixo demonstro as variáveis geradas e utilizadas neste projeto.
 
 |Variável                       |Descrição                                                              |
@@ -121,7 +121,7 @@ Criação da tabela com safras: Um arquivo utilizando linguagem Python realiza a
 Após a geração da tabela e o preenchimento com dados dos vendedores, chega a fase de análise dos dados, esta análise se iniciou avaliando o tamanho da tabela (Linhas X Colunas), em seguida quais tipos de variáveis a tabela possui (Nominais, Ordinais, Discretas e Continuas), nesta etapa ocorreram algumas correções já que dados numéricos haviam sido interpretados como caracteres.
 Após a correção dos dados se iniciou a Análise Exploratória dos dados é de suma importância e tem como objetivo de identificar previamente os dados discrepantes, a normalidade da distribuição de frequências e a variação dos dados. Muitas vezes os valores discrepantes demonstram problemas, erro de digitação, fraudes, diferente moeda monetária.
 Através da Análise Exploratória permitiu notar que:
-* Existiam valores ausentes na tabela e necessitou estratégias de substituição que serão realizadas na fase de modelagem para evitar viés.
+* Presença de valores ausentes na tabela e necessitou estratégias de substituição que serão realizadas na fase de modelagem para evitar viés.
 * Ao verificar a distribuição dos dados de maneira gráfica alguns vendedores demonstraram um comportamento estranho(Vendedores com poucas vendas com Valor da venda muito alto e baixa avalição) ao investigar um pouco mais estes usuários no banco de dados pode-se notar que são possíveis fraudadores, já que estes usuários não haviam recebido seus produtos ou receberam modelo não condizentes ao anúncio. Como estes usuários não são interessantes para este projeto os mesmos foram removidos da tabela.
 * Através da visualização de correlação entre variáveis foram excluidas 2 variáveis pois estavam altamente corelacionadas as outras, desta maneira evitamos que o algoritmo de considere variáveis que estariam explicando a mesma coisa.
 Após a análise exploratória, a última safra foi separada e
@@ -138,7 +138,7 @@ Como existem diversos algoritmos de machine learning cada um com suas qualidades
 <figcaption> Figura2: Resultados obtidos na fase de seleção do algoritmo </figcaption> 
 </figure>
 
-A métrica utilizada para avaliar e chegar nos resultado foi a F1 Score. Na Figura 2 pode-se observar que o modelo LGBMClassifier(Light Gradient Boosting Machine) forneceu os melhores resultados. Baseado nestes resultados e tendo escolhido o modelo a ser utilizado e iniciou-se a etapa de otimização do algoritmo.
+A métrica utilizada para avaliar os resultado foi a F1 Score. Na Figura 2 pode-se observar que o modelo LGBMClassifier(Light Gradient Boosting Machine) forneceu os melhores resultados. Baseado nestes resultados e tendo escolhido o modelo a ser utilizado e iniciou-se a etapa de otimização do algoritmo.
 Para maximizar a quantidade de acertos o modelo possui parametros que podem ser alterados, esta etapa possui um alto custo computacional pois dado alguns parametros ele irá realizar todas as combinações possíveis, algumas estratégias foram adotadas nesta etapa afim de diminuir o número de combinações e achar um resultado mais rápido.
 No início desta etapa foi citado a respeito da ultima safra retirada do dataset, nesta etapa ela foi utilizada, desta maneira esses dados são novos para o modelo já que ele foi retirado da fase inicial do processo.
 
@@ -148,49 +148,48 @@ No início desta etapa foi citado a respeito da ultima safra retirada do dataset
 
 ### **5 – Resultados** 
 
-Ao avaliar os resultados do modelo treinado e otimizado com dados novos da última safra, temos um F1 Score do conjunto dos dados de teste e *Out of Time* com valores próximos e ao observar os dados abaixo pode-se concluir que:
-Ao avaliar os resultados nos dados de validação e observando os usuários que não iriam fazer vendas pode-se concluir que:
-O Modelo teve uma precisão em identificar usuários que não irão realizar vendas em 68% dos casos e conseguiu capturar 78% dos usuários desse grupo
+Através do dataset de Out of Time que foi retirado no início do processo pode-se ter verificar como o modelo esta prevendo novos dados que não foram utilizados na fase de modelagem do sistema.
 
 <figure>
 <center><img src="img/f1score_opt.png" width="600" height="700"> </center>
-<figcaption> Figura3: Resultados da fase de otimização </figcaption> 
+<figcaption> Figura3: Resultados da fase de otimização F1 Score e Precision Recall </figcaption> 
 </figure>
 
-
+A Figura 3 demonstra os resultados do modelo em 2 dataset o Dataset de Teste foi utilizado na fase de otimização e o Dataset Out of Time não havia sido utilizado em nenhum momento durante a fase de treinamento do algoritmo, portanto, são dados totalmente novos para o modelo.
+Ao avaliar os resultados obtidos através do modelo utilizando o dataset Out of Time temos:
+* 68% de precisão, isto é, o modelo acertou em 68% dos usuários que não fizeram vendas nos próximos 3 meses;
+* 78% de revocação/recall, de todos os usuários que não venderam o modelo pode capturar 78% das pessoas deste grupo.
 
 [**Voltar**](#voltar)
 <a name="implementação"></a>
 
 ### **6 – Implementação do modelo** 
 
-Com o modelo treinado salvo se inicia o processo de utilização em novos dados. Para isto foi criado um arquivo em formato pickle contendo o modelo e dados que são importantes para o modelo funcionar.
+Para implementar este modelo, foi criado um arquivo em formato Pickle contendo o modelo e parametros necessários para o modelo funcionar corretamente.
+Geralmente problemas desse tipo o modelo responde apenas de 0 ou 1 (Irá ou nao realizar vendas), mas existe a possibilidade do modelo enviar a resposta em probabilidade. Através da probabilidade podemos classificar em grupos estes usuários de acordo com a chance de efetuar vendas.
 
-A Resposta do modelo de predição pode variar de 0 a 1 sendo que quanto mais próximo do 1 maiores são as chances do usuário não realizar vendas, nos Resultados demonstrado acima o algoritmo usou o arredondamento, isto é, valores acima de 0,5 foi classficado como 1 e inferiores a 0,5 como valores 0. porém podemos usar estes valores decimais, assim, temos a probabilidade deste usuário pertencer de 0 a 1
+<figure>
+<center><img src="img/scores.png" width="350" height="100"> </center>
+<figcaption> Figura4: Scores dos usuários </figcaption> 
+</figure>
 
-
-
-Utilizando o algoritmo treinado na fase anterior o mesmo irá fazer uma predição das chances do vendedor realizar alguma venda nos próximos 3 meses, esta resposta pode variar entre 0 e 1. Quanto maior este score, maiores são as chances de ocorrer vendas. 
-O Id do vendedor junto ao score atribuído pelo algoritmo é enviado para uma tabela no banco de dados  
-
-<img src="img/scores.png" width="350" height="100">
-
-
+Na Figura 4 temos o modelo prevendo as chances de cada usuário não realizar as vendas, estes resultados estarei chamando de scores dos vendedores.
+Com o ID do Vendedor junto ao seu respectivo score é enviada para uma nova tabela no banco de dados. Esta Tabela pode ser fornecida para o departamento responsável pelas ações de retenção dos usuários. 
 
 [**Voltar**](#voltar)
 <a name="negocio"></a>
 
 ### **7 – Possíveis estratégias de negócio** 
-
-Com este score podemos estudar como atuar para impulsionar as vendas utilizando diferentes campanhas para os vendedores. Com estes resultados foi possível separar os vendedores em 4 grupos de acordo com o score:
+ 
+Com a tabela com usuários e respectivos score podemos estudar como atuar para impulsionar as vendas utilizando diferentes campanhas para os vendedores. Com estes resultados foi possível separar os vendedores em 4 grupos de acordo com o score:
 
 
 | Intervalo entre os scores &nbsp; &nbsp;| Ações |
 |:----------: | :------------- | 
 | **1 e 0,81** | Possuem uma grande chance de não realizarem vendas e podem ser ofertadas soluções que requeiram um investimento maior como: uma consultoria personalizada, desconto na comissão das vendas, meses grátis na plataforma.|
 |**0,8 e 0,61** | Para este grupo de vendedores podem ser aplicados outras campanhas de retenção que não exijam tanto investimento quanto ao grupo anterior: envio de e-mails com melhores práticas para vendas, aumentar a relevância e o alcance, aumentar a variedades de produtos na plataforma afim de melhorar as vendas.|
-|**0,6 e 0,35**  | Estes vendedores ainda podem representar um potencial risco de não realizar vendas portanto campanhas de e-mails contendo as tendências de vendas atuais e outras análises podem aumentar ainda mais as chances de vendas.|
-|**0,34 e 0** | Representam clientes que potencialmente vão realizar vendas e que não serão foco para este case.|
+|**0,6 e 0,3**  | Estes vendedores ainda podem representar um potencial risco de não realizar vendas portanto campanhas de e-mails contendo as tendências de vendas atuais e outras análises podem aumentar ainda mais as chances de vendas.|
+|**0,3 e 0** | Representam clientes que potencialmente vão realizar vendas e que não serão foco para este case.|
 
 ## Considerações finais
 Este projeto pode abranger desde início de um projeto da Data Science partindo de um problema de negócio, utilização do banco de dados da empresa, extração e análise dos dados, seleção e otimização do algoritmo de machine learning e por fim um programa que utiliza o algoritmo de machine learning para realizar o score dos vendedores. A partir destes scores pode-se realizar agrupamentos para campanhas distintas de retenção.

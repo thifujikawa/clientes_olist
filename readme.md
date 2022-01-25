@@ -26,9 +26,8 @@ Utilizando Data Science e o Banco de dados da Olist, elaborei um projeto onde po
     Desenvolvendo a documentação
 
 ## Features
-- [x] Envio do Projeto para o Github
-- [ ] Passar o Banco de dados para Download
-- [ ] Melhorar a documentação no GitHub e Notebook
+- [ ] Enviar o Banco de dados para Download
+- [ ] Ajustar algumas partes da documentação no Github
 
 <a name="como_usar"></a>
 ## Como Usar 
@@ -45,7 +44,7 @@ Para a execução do projeto será necessário a extração dos dados diretament
 ### Local Files 
 * Realizar o Download do repositório e do banco de dados conforme as instruções abaixo:
     1. Clonar o [repositório](https://github.com/thifujikawa/clientes_olist.git)
-    2. Efetuar o Download do Banco de dados da Olist 
+    2. Efetuar o Download do Banco de dados da Olist (será disponibilizado futuramente)
 
 ***OBSERVAÇÃO*** O banco de dados deve estar salvo no diretório Data
 
@@ -55,16 +54,14 @@ Para a execução do projeto será necessário a extração dos dados diretament
 <a name="projeto"></a>
 ## Descrição do Projeto:
 
-O Projeto como um todo possui 5 etapas, sendo que 3 contemplam notebooks e scripts.  
-[Neste link](https://thifujikawa.github.io/clientes_olist/) escrevi um pouco mais sobre os detalhes desse projeto.  
-Abaixo estarei descrevendo um pouco mais sobre as etapas porém darei enfase para as etapas com código.  
-- **Etapa 1/5** - Problema de negócio: Diminuição do churn, sendo que o algoritmo será responsável em detectar vendedores que não irão realizar vendas nos próximos 3 meses. Tendo definido estes vendedores ações possam ser tomadas;  
+O Projeto possui 5 etapa onde 3 utilizam notebooks e scripts em SQL, este texto contem informações relacinadas a execução dos arquivos.Para mais detalhes [Neste link](https://thifujikawa.github.io/clientes_olist/) descrevo o projeto com mais detalhes.   
+- **Etapa 1/5** - Problema de negócio: Diminuição do churn utilizando o banco de dados fornecido pela Olist. Um algoritmo de machine learning será elaborado afim de detectar os cliente que que não irão realizar vendas nos próximos 3 meses.  
 
 - **Etapa 2/5** - Extraction Transform and Load (***ETL***): Utilizando o banco de dados da Olist foi realizada uma query (***query_abt.sql***) que ao ser executada pelo script (***geração_abt.py***) cria uma Analytical Base Table (ABT) com os dados coletados pela query, inclusive a variável resposta que nesse caso verifica se a partir da data do fim da safra houveram vendas nos próximos 3 meses.  
 Instruções para execução para a geração da ABT:
-    * No diretório Query executar via terminal de comando o arquivo **geracao_abt.py** e inserir:  
-        - -s : A data inicial de coleta das safras respeitando o formato(YYYY-MM-DD)  
-        - -i : Quantidade de safras que serão geradas   
+    * No diretório (***Query***) executar via terminal de comando o arquivo **geracao_abt.py** e inserir:  
+        - -s : A data inicial de coleta das safras respeitando o formato(YYYY-MM-DD),o banco de dados possui dados de 2016/09/15 até 2018-09-03, como a safra possui 6 meses, o valor a ser utilizado nesse caso é de 2017-04-01  
+        - -i : Quantidade de safras que serão geradas, neste banco de dados podem ser produzidas até 14 safras
         O programa irá criar uma tabela de nome **tb_abt_no_sells** contendo todos os dados referente a ABT e suas respectivas safras.  
 >
 - **Etapa 3/5** - Processamento, Exploração dos dados e Construção do modelo: Com a ABT foi criado um notebook (***modelling.ipynb***) onde foi feita a Análise Exploratória de Dados que auxiliou na detecção de outliers, disposição dos dados e na definição de estratégias para preencher dados nulos contidos no dataset, em seguida foi escolhido o algoritmo e otimizado o algoritmo de machine learning. O algortimo e dados adicionais referente as variáveis foram salvos em um arquivo pickle (***modelo_otimizado.pkl***).  
