@@ -40,7 +40,7 @@ Afim de minimizar o número de clientes que irão deixar a Olist, será utilizad
 ### **2 Data Understanding (*Entendimento dos dados*)**   
 
 <figure>
-<center><img src="img/dbmap.png" width="930" height="500"> </center>
+<center><img src="img/dbmap.png"> </center>
 <figcaption> Figura1: Esquema do banco de dados da Olist </figcaption> 
 </figure>
 
@@ -134,7 +134,7 @@ Para verificar se um algoritmo performa bem não se pode utilizar os dados que f
 Como existem diversos algoritmos de machine learning cada um com suas qualidades e defeitos, foi selecionados alguns afim de criar modelos de previsão, através desta previsão pode-se ter um panorama de como os algoritmos errou/acertou.
 
 <figure>
-<center><img src="img/baseline.png" width="1200" height="400"> </center>
+<center><img src="img/baseline.png"> </center>
 <figcaption> Figura2: Resultados obtidos na fase de seleção do algoritmo </figcaption> 
 </figure>
 
