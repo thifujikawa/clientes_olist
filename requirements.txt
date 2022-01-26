@@ -69,7 +69,7 @@ nest-asyncio==1.5.1
 networkx==2.5.1
 numba==0.53.1
 numexpr==2.7.3
-numpy==1.19.5
+numpy==1.22.1
 packaging==20.9
 pandas==1.2.5
 pandas-profiling==3.0.0
