@@ -40,7 +40,7 @@ Afim de minimizar o número de clientes que irão deixar a Olist, será utilizad
 ### **2 Data Understanding (*Entendimento dos dados*)**   
 
 <figure>
-<center><img src="img/dbmap.png" width="600" height="350"> </center>
+<center><img src="img/dbmap.png" width="830" height="500"> </center>
 <figcaption> Figura1: Esquema do banco de dados da Olist </figcaption> 
 </figure>
 
@@ -192,7 +192,8 @@ Com a tabela com usuários e respectivos score podemos estudar como atuar para i
 |**0,3 e 0** | Representam clientes que potencialmente vão realizar vendas e que não serão foco para este case.|
 
 ## Considerações finais
-Este projeto pode abranger desde início de um projeto da Data Science partindo de um problema de negócio, utilização do banco de dados da empresa, extração e análise dos dados, seleção e otimização do algoritmo de machine learning e por fim um programa que utiliza o algoritmo de machine learning para realizar o score dos vendedores. A partir destes scores pode-se realizar agrupamentos para campanhas distintas de retenção.
+Este projeto pode abranger desde início de um projeto da Data Science partindo de um problema de negócio, utilização do banco de dados da empresa, extração e análise dos dados, seleção e otimização do algoritmo de machine learning e por fim um programa que utiliza o algoritmo de machine learning para realizar o score dos vendedores. A partir destes scores pode-se realizar agrupamentos para campanhas distintas de retenção.   
+Sou formado em engenharia e em todos projetos que participei busquei acompanhar todo os passos do projeto, através desta participação pude adquirir conhecimentos de áreas totalmente adversas a que trabalhava e que de forma direta ou indireta contribuiram em diversos projetos e me agregou diversos conhecimentos.
 
 [**Voltar**](#voltar)
 
