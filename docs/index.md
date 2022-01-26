@@ -134,7 +134,7 @@ Para verificar se um algoritmo performa bem não se pode utilizar os dados que f
 Como existem diversos algoritmos de machine learning cada um com suas qualidades e defeitos, foi selecionados alguns afim de criar modelos de previsão, através desta previsão pode-se ter um panorama de como os algoritmos errou/acertou.
 
 <figure>
-<center><img src="img/baseline.png" height="110%"> </center>
+<center><img src="img/baseline.png"> </center>
 <figcaption> Figura2: Resultados obtidos na fase de seleção do algoritmo </figcaption> 
 </figure>
 
