@@ -40,7 +40,7 @@ Afim de minimizar o número de clientes que irão deixar a Olist, será utilizad
 ### **2 Data Understanding (*Entendimento dos dados*)**   
 
 <figure>
-<center><img src="img/dbmap.png" width="900" height="520"> </center>
+<center><img src="img/dbmap.png" width="930" height="500"> </center>
 <figcaption> Figura1: Esquema do banco de dados da Olist </figcaption> 
 </figure>
 
